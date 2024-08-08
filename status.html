@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>출석 현황</title>
+    <style>
+        .date-button {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        .date-button.active {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>출석 현황</h1>
+    <div id="date-buttons"></div>
     <table id="attendance-table">
         <thead>
             <tr>
@@ -16,13 +31,12 @@
             </tr>
         </thead>
         <tbody>
-            <!-- JavaScript로 채워질 부분 -->
+            <!-- 출석 현황이 여기에 표시됩니다 -->
         </tbody>
     </table>
-    <br>
-    <button id="reset-btn">초기화</button>
+    <button id="reset-btn">출석 초기화</button>
     <button id="refresh-btn">새로고침</button>
-    <a href="index.html">출석하기 페이지로 돌아가기</a>
+    <button id="attendance-btn" onclick="location.href='index.html'">출석하기</button>
 
     <script src="status.js"></script>
 </body>
