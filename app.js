@@ -1,45 +1,26 @@
-const attendanceBtn = document.getElementById('attendance-btn');
-
-// 초기 참석자 목록
-const initialAttendees = [
-    { name: "이건호", status: "X" },
-    { name: "이승하", status: "X" },
-    { name: "정안성", status: "X" }
-];
-
-// 로컬 저장소에서 출석 현황 불러오기
-function loadAttendance() {
-    const storedAttendance = JSON.parse(localStorage.getItem('attendance'));
-    const attendees = initialAttendees.map(attendee => ({ ...attendee })); // 초기 목록 복사
-
-    if (storedAttendance) {
-        attendees.forEach(attendee => {
-            const stored = storedAttendance.find(a => a.name === attendee.name);
-            if (stored) {
-                attendee.status = stored.status;
-            }
-        });
+document.getElementById('attendance-btn').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    if (!name) {
+        alert('이름을 입력해 주세요.');
+        return;
     }
 
-    return attendees;
-}
+    const today = new Date().toISOString().split('T')[0]; // 현재 날짜 구하기
+    const attendance = JSON.parse(localStorage.getItem('attendance')) || {};
 
-// 출석하기 버튼 클릭 이벤트
-attendanceBtn.addEventListener('click', () => {
-    const name = document.getElementById('name').value;
-    const attendees = loadAttendance();
-    const attendee = attendees.find(a => a.name === name);
+    // 현재 날짜에 출석 기록 추가
+    if (!attendance[today]) {
+        attendance[today] = {};
+    }
+    attendance[today][name] = "O"; // 출석 상태 "O"로 기록
 
-    if (attendee) {
-        if (attendee.status === 'O') {
-            alert(`${name}님은 이미 출석하셨습니다.`);
-        } else {
-            attendee.status = 'O';
-            localStorage.setItem('attendance', JSON.stringify(attendees));
-            document.getElementById('name').value = '';
-            alert(`${name}님이 출석하셨습니다.`);
-        }
-    } else {
+    localStorage.setItem('attendance', JSON.stringify(attendance));
+    alert(`${name}님의 출석이 ${today}에 기록되었습니다.`);
+    
+    // 입력 필드 초기화
+    document.getElementById('name').value = '';
+});
+
         alert("이름을 확인하세요.");
     }
 });
