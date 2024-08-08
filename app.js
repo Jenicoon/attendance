@@ -20,7 +20,3 @@ document.getElementById('attendance-btn').addEventListener('click', () => {
     // 입력 필드 초기화
     document.getElementById('name').value = '';
 });
-
-        alert("이름을 확인하세요.");
-    }
-});
