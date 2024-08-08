@@ -5,9 +5,11 @@ const dateButtonsContainer = document.getElementById('date-buttons');
 
 // 초기 참석자 목록
 const initialAttendees = [
-    { name: "홍길동", status: "X" },
-    { name: "김철수", status: "X" },
-    { name: "이영희", status: "X" }
+    { name: "이건호", status: "X" },
+    { name: "이승하", status: "X" },
+    { name: "정안성", status: "X" },
+    { name: "장민혁", status: "X" },
+    { name: "이승우", status: "X" }
 ];
 
 // 날짜 버튼 생성
